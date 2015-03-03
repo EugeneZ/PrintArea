@@ -26,7 +26,15 @@
  *  @standard   | [string]   | strict, loose, (html5) | Only for popup. For html 4.01, strict or loose document standard, or html 5 standard
  *  @extraHead  | [string]   | ('')                   | comma separated list of extra elements to be appended to the head tag
  */
-(function($) {
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function($) {
     var counter = 0;
     var modes = { iframe : "iframe", popup : "popup" };
     var standards = { strict : "strict", loose : "loose", html5 : "html5" };
@@ -190,4 +198,4 @@
             return newWin;
         }
     };
-})(jQuery);
+}));
